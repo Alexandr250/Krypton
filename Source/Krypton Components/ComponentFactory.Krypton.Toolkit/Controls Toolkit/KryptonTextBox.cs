@@ -43,6 +43,27 @@ namespace ComponentFactory.Krypton.Toolkit
             #region Instance Fields
             private KryptonTextBox _kryptonTextBox;
             private bool _mouseOver;
+            private string _hint;
+
+            // Водяной знак
+            public string Hint {
+                get
+                {
+                    return _hint;
+                }
+                set
+                {
+                    _hint = value;
+                    if (string.IsNullOrEmpty(Text) && !string.IsNullOrEmpty(Hint))
+                    {
+                        IntPtr hintPtr = Marshal.StringToHGlobalUni(Hint);
+                        IntPtr intPtr = Marshal.AllocHGlobal(sizeof( Int32 ));
+                        Marshal.WriteInt32(intPtr, 1);
+                        PI.SendMessage(Handle, PI.EM_SETCUEBANNER, intPtr, hintPtr);
+                    }
+                    this.Refresh();
+                }
+            }
             #endregion
 
             #region Events
@@ -81,8 +102,8 @@ namespace ComponentFactory.Krypton.Toolkit
             public bool MouseOver
             {
                 get { return _mouseOver; }
-                
-                set 
+
+                set
                 {
                     // Only interested in changes
                     if (_mouseOver != value)
@@ -156,6 +177,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                 PI.GetClientRect(Handle, out rect);
 
                                 // Drawn entire client area in the background color
+
                                 using (SolidBrush backBrush = new SolidBrush(BackColor))
                                     g.FillRectangle(backBrush, new Rectangle(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top));
 
@@ -525,7 +547,16 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region Public
+        #region Public
+        /// <summary>
+        /// Gets and sets control watermark.
+        /// </summary>
+        public string Hint
+        {
+            get { return _textBox.Hint; }
+            set { _textBox.Hint = value; }
+        }
+
         /// <summary>
         /// Gets and sets if the control is in the tab chain.
         /// </summary>
@@ -1674,7 +1705,13 @@ namespace ComponentFactory.Krypton.Toolkit
             if (IsHandleCreated || _forcedLayout || (DesignMode && (_textBox != null)))
             {
                 Rectangle fillRect = _layoutFill.FillRect;
-                _textBox.SetBounds(fillRect.X, fillRect.Y, fillRect.Width, fillRect.Height);
+
+                // Костыль для центрирования внутреннего текстового поля по вертикали
+                int y = Height / 2 - _textBox.Height / 2;
+
+                // Это было до вставки костыля
+                //_textBox.SetBounds(fillRect.X, fillRect.Y, fillRect.Width, fillRect.Height);
+                _textBox.SetBounds(fillRect.X, y, fillRect.Width, fillRect.Height);
             }
         }
 
