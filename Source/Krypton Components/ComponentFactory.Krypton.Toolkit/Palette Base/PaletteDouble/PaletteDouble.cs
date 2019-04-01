@@ -8,21 +8,14 @@
 //  Version 4.6.0.0 	www.ComponentFactory.com
 // *****************************************************************************
 
-using System;
-using System.Text;
-using System.Drawing;
-using System.Drawing.Text;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Implement storage for palette border and background.
-	/// </summary>
-	public class PaletteDouble : Storage,
+    /// <summary>
+    /// Implement storage for palette border and background.
+    /// </summary>
+    public class PaletteDouble : Storage,
 								 IPaletteDouble
 	{
 		#region Instance Fields

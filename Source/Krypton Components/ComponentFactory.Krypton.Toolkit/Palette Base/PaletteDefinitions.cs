@@ -2130,6 +2130,11 @@ namespace ComponentFactory.Krypton.Toolkit
         SparklePurple,
 
         /// <summary>
+        /// Specifies the light variant on the Flat palette theme.
+        /// </summary>
+        Flat,
+
+        /// <summary>
 		/// Specifies a custom palette be used.
 		/// </summary>
 		Custom
@@ -2195,6 +2200,11 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Specifies the Purple color variant on the Sparkle palette theme.
         /// </summary>
         SparklePurple,
+
+        /// <summary>
+        /// Specifies the light variant on the Flat palette theme.
+        /// </summary>
+        Flat,
 
         /// <summary>
         /// Specifies a custom palette be used.

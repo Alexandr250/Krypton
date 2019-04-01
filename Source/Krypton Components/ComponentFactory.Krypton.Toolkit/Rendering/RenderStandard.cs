@@ -9,22 +9,20 @@
 // *****************************************************************************
 
 using System;
-using System.Text;
+using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
-using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Provides the standard renderer that honors all palette properties.
-	/// </summary>
-	public class RenderStandard : RenderBase
+    /// <summary>
+    /// Provides the standard renderer that honors all palette properties.
+    /// </summary>
+    public class RenderStandard : RenderBase
     {
         #region Static Fields
         // Constants
@@ -718,7 +716,11 @@ namespace ComponentFactory.Krypton.Toolkit
 									         PaletteState state,
                                              IDisposable memento)
 		{
-			Debug.Assert(context != null);
+#if DEBUG
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+#endif
+            Debug.Assert(context != null);
 			Debug.Assert(path != null);
 			Debug.Assert(palette != null);
 
@@ -745,7 +747,8 @@ namespace ComponentFactory.Krypton.Toolkit
 
                     // Get the rectangle to use when dealing with gradients
                     Rectangle gradientRect = context.GetAlignedRectangle(palette.GetBackColorAlign(state), rect);
-
+                    
+                    
                     switch (backColorStyle)
                     {
                         case PaletteColorStyle.GlassSimpleFull:
@@ -882,6 +885,12 @@ namespace ComponentFactory.Krypton.Toolkit
                     }
 				}
 			}
+
+#if DEBUG
+            stopWatch.Stop();
+            Debug.WriteLine(string.Format("Paint control: {0} :: Size: {1} :: Total ticks: {2} :: BackColorStyle: {3}", 
+                context.Control.Name, rect.ToString(), stopWatch.ElapsedTicks, palette.GetBackColorStyle(state)));
+#endif
 
             return memento;
 		}

@@ -9,23 +9,19 @@
 // *****************************************************************************
 
 using System;
-using System.Text;
-using System.Data;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Provides a description for a section of your form.
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonHeader), "ToolboxBitmaps.KryptonHeader.bmp")]
     [DefaultEvent("Paint")]
 	[DefaultProperty("Text")]

@@ -8,19 +8,13 @@
 //  Version 4.6.0.0 	www.ComponentFactory.com
 // *****************************************************************************
 
-using System;
-using System.Text;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Extends the ViewDrawDocker by adding status strip merging into the border.
-	/// </summary>
+    /// <summary>
+    /// Extends the ViewDrawDocker by adding status strip merging into the border.
+    /// </summary>
     public class ViewDrawForm : ViewDrawDocker
     {
         #region Instance Fields

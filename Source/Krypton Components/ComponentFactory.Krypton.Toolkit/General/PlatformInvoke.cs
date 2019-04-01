@@ -146,6 +146,8 @@ namespace ComponentFactory.Krypton.Toolkit
         internal const uint GW_OWNER = 4;
         internal const uint GW_CHILD = 5;
         internal const uint GW_ENABLEDPOPUP = 6;
+
+        internal const int EM_SETCUEBANNER = 0x1501;
         #endregion
 
         #region Static Methods

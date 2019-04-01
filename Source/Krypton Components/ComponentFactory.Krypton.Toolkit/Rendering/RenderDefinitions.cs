@@ -861,6 +861,11 @@ namespace ComponentFactory.Krypton.Toolkit
         Office2007,
 
         /// <summary>
+        /// Specifies the RenderFlat be used.
+        /// </summary>
+        Flat,
+
+        /// <summary>
 		/// Specifies the RenderProfessional be used.
 		/// </summary>
 		Professional,

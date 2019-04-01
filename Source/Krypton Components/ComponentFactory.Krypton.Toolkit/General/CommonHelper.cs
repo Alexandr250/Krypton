@@ -1089,7 +1089,8 @@ namespace ComponentFactory.Krypton.Toolkit
             PI.AdjustWindowRectEx(ref rect, cp.Style, false, cp.ExStyle);
 
             // Return the per side border values
-            return new Padding(-rect.left, -rect.top, rect.right, rect.bottom);
+            //return new Padding(-rect.left, -rect.top, rect.right, rect.bottom);
+            return new Padding(2, -rect.top, 2, 2);
         }
 
         /// <summary>

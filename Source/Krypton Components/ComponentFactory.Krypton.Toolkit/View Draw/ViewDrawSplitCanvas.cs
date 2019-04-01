@@ -537,7 +537,7 @@ namespace ComponentFactory.Krypton.Toolkit
 
                     // Restrict the clipping to the area inside the canvas border
                     if (DrawTabBorder)
-                        borderPath = context.Renderer.RenderTabBorder.GetTabBorderPath(context, ClientRectangle, _paletteBorder, Orientation, State, TabBorderStyle);
+                        borderPath = context.Renderer.RenderTabBorder.GetTabBorderPath(context, ClientRectangle, _paletteBorder, Orientation, State, TabBorderStyle);                    
                     else
                         borderPath = context.Renderer.RenderStandardBorder.GetBorderPath(context, ClientRectangle, _paletteBorder, Orientation, State);
 
@@ -682,7 +682,7 @@ namespace ComponentFactory.Krypton.Toolkit
             GraphicsPath borderPath;
             Padding borderPadding;
 
-            // Ask the border renderer for a path that encloses the border
+            // Ask the border renderer for a path that encloses the border            
             if (DrawTabBorder)
             {
                 borderPath = context.Renderer.RenderTabBorder.GetTabBackPath(context, rect, paletteBorder, Orientation, state, TabBorderStyle);

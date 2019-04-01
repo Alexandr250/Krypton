@@ -279,6 +279,13 @@
     <Compile Include="Palette Base\PaletteRedirect\PaletteRedirectBorderEdge.cs" />
     <Compile Include="Palette Base\PaletteRedirect\PaletteRedirectBorder.cs" />
     <Compile Include="Palette Base\PaletteElementColor\PaletteElementColor.cs" />
+    <Compile Include="Palette Builtin\PaletteFlat.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Palette Builtin\PaletteFlatBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Palette Controls\KryptonColorTableFlat.cs" />
     <Compile Include="Palette Controls\PaletteBackInheritNode.cs" />
     <Compile Include="Palette Controls\PaletteContentInheritNode.cs" />
     <Compile Include="Palette Controls\PaletteNodeOverride.cs" />
@@ -418,7 +425,12 @@
     <Compile Include="Palette Controls\PaletteDataGridViewTripleCommon.cs" />
     <Compile Include="Palette Controls\PaletteDataGridViewTripleRedirect.cs" />
     <Compile Include="Palette Controls\PaletteColorButtonStrings.cs" />
+    <Compile Include="Palette Controls\SchemeOfficeColors.cs" />
+    <Compile Include="Rendering\KryptonFlatRenderer.cs" />
     <Compile Include="Rendering\RenderExpertHelpers.cs" />
+    <Compile Include="Rendering\RenderFlat.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Rendering\RenderOffice2007.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -919,6 +931,7 @@
     <None Include="Resources\CB2010Black.bmp" />
     <None Include="Resources\CB2010Blue.bmp" />
     <None Include="Resources\CB2010Silver.bmp" />
+    <None Include="Resources\CBFlat.bmp" />
     <Content Include="Resources\DisabledDropDownButton.png" />
     <None Include="Resources\GallerySilverBlack.bmp" />
     <None Include="Resources\GalleryBlue.bmp" />

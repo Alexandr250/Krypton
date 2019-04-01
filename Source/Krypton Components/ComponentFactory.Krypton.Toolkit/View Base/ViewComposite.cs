@@ -174,6 +174,9 @@ namespace ComponentFactory.Krypton.Toolkit
 			// Ask each child to render in turn
             foreach (ViewBase child in ordering)
 			{
+#if DEBUG
+                Console.WriteLine("ViewComposite.Render :: " + child.GetType().ToString());
+#endif
                 // Only render visible children that are inside the clipping rectangle
                 if (child.Visible && child.ClientRectangle.IntersectsWith(context.ClipRect))
                     child.Render(context);

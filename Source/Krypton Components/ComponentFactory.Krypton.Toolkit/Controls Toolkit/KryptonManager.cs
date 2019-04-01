@@ -9,7 +9,6 @@
 // *****************************************************************************
 
 using System;
-using System.Text;
 using System.Drawing;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -56,11 +55,13 @@ namespace ComponentFactory.Krypton.Toolkit
         private static PaletteSparkleBlue _paletteSparkleBlue;
         private static PaletteSparkleOrange _paletteSparkleOrange;
         private static PaletteSparklePurple _paletteSparklePurple;
+        private static PaletteFlat _paletteFlat;
         private static RenderStandard _renderStandard;
         private static RenderProfessional _renderProfessional;
         private static RenderOffice2007 _renderOffice2007;
         private static RenderOffice2010 _renderOffice2010;
         private static RenderSparkle _renderSparkle;
+        private static RenderFlat _renderFlat;
         #endregion
 
         #region Static Events
@@ -433,6 +434,8 @@ namespace ComponentFactory.Krypton.Toolkit
                         return PaletteSparkleOrange;
                     case PaletteModeManager.SparklePurple:
                         return PaletteSparklePurple;
+                    case PaletteModeManager.Flat:
+                        return PaletteFlat;
                     case PaletteModeManager.Custom:
                         return _globalPalette;
                     default:
@@ -473,6 +476,8 @@ namespace ComponentFactory.Krypton.Toolkit
                     return PaletteSparkleOrange;
                 case PaletteMode.SparklePurple:
                     return PaletteSparklePurple;
+                case PaletteMode.Flat:
+                    return PaletteFlat;
                 case PaletteMode.Global:
                     return CurrentGlobalPalette;
                 case PaletteMode.Custom:
@@ -637,6 +642,20 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
+        /// Gets the single instance of the light variant Flat palette.
+        /// </summary>
+        public static PaletteFlat PaletteFlat
+        {
+            get
+            {
+                if (_paletteFlat == null)
+                    _paletteFlat = new PaletteFlat();
+
+                return _paletteFlat;
+            }
+        }
+
+        /// <summary>
         /// Gets the implementation for the requested renderer mode.
         /// </summary>
         /// <param name="mode">Requested renderer mode.</param>
@@ -645,6 +664,8 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             switch (mode)
             {
+                case RendererMode.Flat:
+                    return RenderFlat;
                 case RendererMode.Sparkle:
                     return RenderSparkle;
                 case RendererMode.Office2007:
@@ -701,6 +722,20 @@ namespace ComponentFactory.Krypton.Toolkit
                     _renderOffice2010 = new RenderOffice2010();
 
                 return _renderOffice2010;
+            }
+        }
+
+        /// <summary>
+        /// Gets the single instance of the Office 2010 renderer.
+        /// </summary>
+        public static RenderFlat RenderFlat
+        {
+            get
+            {
+                if (_renderFlat == null)
+                    _renderFlat = new RenderFlat();
+
+                return _renderFlat;
             }
         }
 
@@ -829,6 +864,9 @@ namespace ComponentFactory.Krypton.Toolkit
 
             if (_paletteSparklePurple != null)
                 _paletteSparklePurple.UserPreferenceChanged();
+
+            if (_paletteFlat != null)
+                _paletteFlat.UserPreferenceChanged();
 
             UpdateToolStripManager();
         }

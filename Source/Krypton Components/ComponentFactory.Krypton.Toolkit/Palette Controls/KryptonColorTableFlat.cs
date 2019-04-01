@@ -1,40 +1,30 @@
-﻿// *****************************************************************************
-// 
-//  © Component Factory Pty Ltd 2017. All rights reserved.
-//	The software and associated documentation supplied hereunder are the 
-//  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
-// 
-//  Version 4.6.0.0 	www.ComponentFactory.com
-// *****************************************************************************
-
-using System.Drawing;
+﻿using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Win32;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-
-    #region SchemeOfficeColors
-    #endregion
-
     /// <summary>
-    /// Provide KryptonColorTable2007 values using an array of Color values as the source.
+    /// Provide KryptonColorTable2010 values using an array of Color values as the source.
     /// </summary>
-    public class KryptonColorTable2007 : KryptonColorTable
+    public class KryptonColorTableFlat : KryptonColorTable
     {
         #region Static Fields
-        private static readonly Color _menuBorder = Color.FromArgb(134, 134, 134);
-        private static readonly Color _menuItemSelectedBegin = Color.FromArgb(255, 213, 103);
-        private static readonly Color _menuItemSelectedEnd = Color.FromArgb(255, 228, 145);
-        private static readonly Color _contextMenuBackground = Color.FromArgb(250, 250, 250);
-        private static readonly Color _checkBackground = Color.FromArgb(255, 227, 149);
-        private static readonly Color _buttonSelectedBegin = Color.FromArgb(255, 235, 166);
-        private static readonly Color _buttonSelectedEnd = Color.FromArgb(255, 213, 103);
-        private static readonly Color _buttonPressedBegin = Color.FromArgb(253, 164, 97);
-        private static readonly Color _buttonPressedEnd = Color.FromArgb(252, 143, 61);
-        private static readonly Color _buttonCheckedBegin = Color.FromArgb(252, 180, 100);
-        private static readonly Color _buttonCheckedEnd = Color.FromArgb(252, 161, 54);
+        private static readonly Color _contextMenuBackground = Color.White;
+        private static readonly Color _menuBorder = Color.FromArgb(167, 171, 176);
+        private static readonly Color _checkBackground = Color.FromArgb(252, 241, 194);
+        private static readonly Color _buttonSelectedBegin = Color.FromArgb(251, 242, 215);
+        private static readonly Color _buttonSelectedEnd = Color.FromArgb(247, 224, 135);
+        private static readonly Color _buttonPressedBegin = Color.FromArgb(255, 228, 138);
+        private static readonly Color _buttonPressedEnd = Color.FromArgb(255, 228, 138);
+        private static readonly Color _buttonCheckedBegin = Color.FromArgb(255, 216, 107);
+        private static readonly Color _buttonCheckedEnd = Color.FromArgb(255, 216, 107);
+        private static readonly Color _menuItemSelectedBegin = Color.FromArgb(251, 242, 215);
+        private static readonly Color _menuItemSelectedEnd = Color.FromArgb(247, 224, 135);
         private static Font _menuToolFont;
         private static Font _statusFont;
         #endregion
@@ -45,7 +35,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region Identity
-        static KryptonColorTable2007()
+        static KryptonColorTableFlat()
         {
             // Get the font settings from the system
             DefineFonts();
@@ -55,12 +45,12 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-        /// Initialize a new instance of the KryptonColorTable2007 class.
+        /// Initialize a new instance of the KryptonColorTable2010 class.
         /// </summary>
         /// <param name="colors">Source of </param>
         /// <param name="roundedEdges">Should have rounded edges.</param>
         /// <param name="palette">Associated palette instance.</param>
-        public KryptonColorTable2007(Color[] colors,
+        public KryptonColorTableFlat(Color[] colors,
                                      InheritBool roundedEdges,
                                      IPalette palette)
             : base(palette)
@@ -472,7 +462,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public override Color MenuStripGradientBegin
         {
-            get { return _colors[(int)SchemeOfficeColors.ToolStripBack]; }
+            get { return _colors[(int)SchemeOfficeColors.FormBorderHeaderActive1]; }
         }
         #endregion
 
@@ -604,7 +594,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public override Color MenuStripText
         {
-            get { return _colors[(int)SchemeOfficeColors.TextLabelPanel]; }
+            get { return _colors[(int)SchemeOfficeColors.FormHeaderShortActive]; }
         }
         #endregion
 
@@ -614,7 +604,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public override Color ToolStripText
         {
-            get { return _colors[(int)SchemeOfficeColors.TextButtonNormal]; }
+            get { return _colors[(int)SchemeOfficeColors.ToolStripEnd]; }
         }
         #endregion
 
@@ -770,4 +760,5 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
     }
+
 }

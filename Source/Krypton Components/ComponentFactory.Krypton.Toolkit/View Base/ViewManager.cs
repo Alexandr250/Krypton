@@ -402,14 +402,14 @@ namespace ComponentFactory.Krypton.Toolkit
             }
         }
 
-		/// <summary>
-		/// Perform a paint of the view.
-		/// </summary>
+        /// <summary>
+        /// Perform a paint of the view.
+        /// </summary>
         /// <param name="context">Renderer context.</param>
         public virtual void Paint(RenderContext context)
-		{
+        {
             Debug.Assert(context != null);
-			Debug.Assert(Root != null);
+            Debug.Assert(Root != null);
 
             // Validate incoming reference
             if (context == null) throw new ArgumentNullException("context");
@@ -417,23 +417,39 @@ namespace ComponentFactory.Krypton.Toolkit
             // Do nothing if the control is disposed or inside a layout call
             if (!_control.IsDisposed)
             {
-                if (_outputDebug)
-                    PI.QueryPerformanceCounter(ref _outputStart);
-                
+#if DEBUG
+                PI.QueryPerformanceCounter(ref _outputStart);
+#endif
+                //if (_outputDebug)
+                //    PI.QueryPerformanceCounter(ref _outputStart);
+
                 // Ask the view to paint itself
                 Root.Render(context);
 
-                if (_outputDebug)
-                {
-                    long outputEnd = 0;
-                    PI.QueryPerformanceCounter(ref outputEnd);
-                    long outputDiff = outputEnd - _outputStart;
+#if DEBUG                
+                long outputEnd = 0;
+                PI.QueryPerformanceCounter(ref outputEnd);
+                long outputDiff = outputEnd - _outputStart;
 
-                    Console.WriteLine("Id:{0} Paint Type:{1} Elapsed: {2}",
-                        Id, 
-                        _control.GetType().ToString(),
-                        outputDiff.ToString());
-                }
+                Console.WriteLine("Root.Render(context) :: Id:{0} | Control:{3} | PaintType:{1} | Elapsed: {2}",
+                    Id,
+                    _control.GetType().ToString(),
+                    outputDiff.ToString(),
+                    _control.ToString());
+
+#endif
+
+                //if (_outputDebug)
+                //{
+                //    long outputEnd = 0;
+                //    PI.QueryPerformanceCounter(ref outputEnd);
+                //    long outputDiff = outputEnd - _outputStart;
+
+                //    Console.WriteLine("Id:{0} Paint Type:{1} Elapsed: {2}",
+                //        Id, 
+                //        _control.GetType().ToString(),
+                //        outputDiff.ToString());
+                //}
             }
 
             // Maintain internal counters for measuring perf

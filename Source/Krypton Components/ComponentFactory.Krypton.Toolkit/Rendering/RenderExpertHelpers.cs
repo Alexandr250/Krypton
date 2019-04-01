@@ -9,14 +9,8 @@
 // *****************************************************************************
 
 using System;
-using System.Text;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -78,12 +72,17 @@ namespace ComponentFactory.Krypton.Toolkit
                 else
                     cache = (MementoDouble)memento;
 
-                cache.first = DrawBackExpert(rect, 
+                // Рисование внешней части фона ( в тч внутренняя граница )
+                cache.first = DrawBackExpert(rect,
                                              CommonHelper.MergeColors(backColor1, 0.35f, Color.White, 0.65f),
-                                             CommonHelper.MergeColors(backColor2, 0.53f, Color.White, 0.65f), 
+                                             CommonHelper.MergeColors(backColor2, 0.53f, Color.White, 0.65f),
                                              orientation, context.Graphics, memento, true, true);
-                
+
+                // Рисование внутренней части фона
                 cache.second = DrawBackExpert(rect, backColor1, backColor2, orientation, context.Graphics, memento, false, true);
+
+
+
 
                 return cache;
             }
@@ -414,6 +413,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     if (!total)
                     {
                         // Update to draw the inside area instead
+                        // Жестко прописанное уменьшение внутренней части фона, не поддающееся регулированию при помощи палитры
                         drawRect.Inflate(-1, -1);
 
                         cache.drawRect = drawRect;
@@ -440,6 +440,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     if ((gradientRect.Width > 0) && (gradientRect.Height > 0))
                     {
                         // Draw entire area in a gradient color effect
+                        // А также жествое изменение цвета
                         cache.entireBrush = new LinearGradientBrush(gradientRect, CommonHelper.WhitenColor(color1, 0.92f, 0.92f, 0.92f), color1, AngleFromOrientation(orientation));
                         cache.entireBrush.Blend = _rounded1Blend;
                     }

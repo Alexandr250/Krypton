@@ -602,6 +602,10 @@ namespace ComponentFactory.Krypton.Toolkit
             // Ensure that child elements have correct palette state
             CheckPaletteState(context);
 
+#if DEBUG
+            Console.WriteLine("ViewDrawButton.Render : Context :" + context.Control);
+#endif
+
             // Let base class perform standard rendering
             base.Render(context);
         }
