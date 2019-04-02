@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
@@ -15,11 +14,11 @@ namespace ComponentFactory.Krypton.Toolkit
         private static readonly Image[] _radioButtonArray;
         private static readonly Image _silverDropDownButton = Properties.Resources._2010BlueDropDownButton;
         private static readonly Image _contextMenuSubMenu = Properties.Resources._2010BlueContextMenuSub;
-        private static readonly Image _formCloseH = Properties.Resources._2010ButtonCloseH;
-        private static readonly Image _formClose = Properties.Resources._2010ButtonClose;
-        private static readonly Image _formMax = Properties.Resources._2010ButtonMax;
-        private static readonly Image _formMin = Properties.Resources._2010ButtonMin;
-        private static readonly Image _formRestore = Properties.Resources._2010ButtonRestore;
+        private static readonly Image _formCloseH = Properties.Resources.FlatButtonClose01;                //Properties.Resources._2010ButtonCloseH;
+        private static readonly Image _formClose = Properties.Resources.FlatButtonClose01;                 //Properties.Resources._2010ButtonClose;
+        private static readonly Image _formMax = Properties.Resources.FlatButtonMax01;                     //Properties.Resources._2010ButtonMax;
+        private static readonly Image _formMin = Properties.Resources.FlatButtonMin01;                     //Properties.Resources._2010ButtonMin;
+        private static readonly Image _formRestore = Properties.Resources.FlatButtonRestor01;              //Properties.Resources._2010ButtonRestore;
         private static readonly Color[] _trackBarColors = new Color[] { Color.FromArgb(170, 170, 170),      // Tick marks
                                                                         Color.FromArgb(166, 170, 175),      // Top track
                                                                         Color.FromArgb(226, 220, 235),      // Bottom track
@@ -32,6 +31,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                       Color.White,                      // TextButtonChecked
                                                                       Color.FromArgb(210, 210, 210),    // ButtonNormalBorder1
                                                                       Color.FromArgb(210, 210, 210),    // ButtonNormalDefaultBorder
+                                                                      // Кнопка
                                                                       Color.FromArgb(240, 240, 240),    // ButtonNormalBack1
                                                                       Color.FromArgb(240, 240, 240),    // ButtonNormalBack2
                                                                       Color.FromArgb(240, 240, 240),    // ButtonNormalDefaultBack1
@@ -39,48 +39,49 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                       Color.FromArgb(240, 240, 240),    // ButtonNormalNavigatorBack1
                                                                       Color.FromArgb(240, 240, 240),    // ButtonNormalNavigatorBack2
                                                                       Color.FromArgb(227, 230, 232),    // PanelClient
-                                                                      Color.FromArgb(207, 212, 218),    // PanelAlternative
+                                                                      // цвет BreadCrumb
+                                                                      Color.FromArgb(240, 240, 240),    // PanelAlternative
                                                                       // Граница заголовков, групп
-                                                                      Color.FromArgb(220, 220, 220),    // ControlBorder
+                                                                      Color.FromArgb(170, 170, 170),    // ControlBorder
                                                                       Color.FromArgb(250, 253, 255),    // SeparatorHighBorder1
                                                                       Color.FromArgb(227, 232, 237),    // SeparatorHighBorder2
 
                                                                       // Фон заголовков
-                                                                      Color.FromArgb(248, 248, 248),    // HeaderPrimaryBack1
-                                                                      Color.FromArgb(248, 248, 248),    // HeaderPrimaryBack2
-                                                                      Color.FromArgb(248, 248, 248),    // HeaderSecondaryBack1
-                                                                      Color.FromArgb(248, 248, 248),    // HeaderSecondaryBack2
+                                                                      Color.FromArgb(240, 240, 240),    // HeaderPrimaryBack1
+                                                                      Color.FromArgb(240, 240, 240),    // HeaderPrimaryBack2
+                                                                      Color.FromArgb(237, 237, 237),    // HeaderSecondaryBack1
+                                                                      Color.FromArgb(237, 237, 237),    // HeaderSecondaryBack2
                                                                       Color.FromArgb( 59,  59,  59),    // HeaderText
 
-                                                                      Color.FromArgb( 255,  255,  255),    // StatusStripText
+                                                                      Color.FromArgb( 255,  255,  255), // StatusStripText
 
-                                                                      Color.FromArgb(210, 210,  210),    // ButtonBorder
-                                                                      Color.FromArgb(184, 184, 184),    // SeparatorLight // В палитре Flat для рисования разделителя используется только этот цвет
+                                                                      Color.FromArgb(210, 210,  210),   // ButtonBorder
+                                                                      Color.FromArgb(184, 184, 184),    // SeparatorLight           // В палитре Flat для рисования разделителя используется только этот цвет
                                                                       Color.FromArgb(119, 123, 127),    // SeparatorDark
-                                                                      Color.FromArgb(184, 184, 184),    // GripLight      // В палитре Flat для рисования разделителя используется только этот цвет
+                                                                      Color.FromArgb(184, 184, 184),    // GripLight                // В палитре Flat для рисования разделителя используется только этот цвет
                                                                       Color.FromArgb(181, 190, 199),    // GripDark
                                                                       Color.FromArgb(227, 230, 232),    // ToolStripBack
-                                                                      Color.FromArgb(16, 110, 190),     // StatusStripLight // В палитре Flat для заливки панели состояния используется только этот цвет
+                                                                      Color.FromArgb(16, 110, 190),     // StatusStripLight         // В палитре Flat для заливки панели состояния используется только этот цвет
                                                                       Color.FromArgb(183, 188, 193),    // StatusStripDark
                                                                       Color.White,                      // ImageMargin
-                                                                      Color.FromArgb(228, 228, 228),    // ToolStripBegin // В палитре Flat для заливки панели инструментов используется только этот цвет
-                                                                      Color.FromArgb(200, 200, 200),    // ToolStripMiddle // Цвет выбранного элемента в панели инструментов
-                                                                      Color.FromArgb(0, 0, 0),          // ToolStripEnd // Используется для задания цвета шрифта панели инструментов
+                                                                      Color.FromArgb(228, 228, 228),    // ToolStripBegin           // В палитре Flat для заливки панели инструментов используется только этот цвет
+                                                                      Color.FromArgb(200, 200, 200),    // ToolStripMiddle          // Цвет выбранного элемента в панели инструментов
+                                                                      Color.FromArgb(0, 0, 0),          // ToolStripEnd             // Используется для задания цвета шрифта панели инструментов
                                                                       Color.FromArgb(147, 154, 163),    // OverflowBegin
                                                                       Color.FromArgb(147, 154, 163),    // OverflowMiddle
                                                                       Color.FromArgb(147, 154, 163),    // OverflowEnd
-                                                                      Color.FromArgb(171, 171, 171),    // ToolStripBorder // Граница панели инструментов
+                                                                      Color.FromArgb(171, 171, 171),    // ToolStripBorder          // Граница панели инструментов
 
-                                                                      Color.FromArgb(16, 110, 190),     // FormBorderActive // Границы окна
+                                                                      Color.FromArgb(16, 110, 190),     // FormBorderActive         // Границы окна
                                                                       Color.FromArgb(134, 139, 145),    // FormBorderInactive
-                                                                      Color.FromArgb(16, 110, 190),     // FormBorderActiveLight // Полоска под границей окна
-                                                                      Color.FromArgb(16, 110, 190),     // FormBorderActiveDark // Внутренняя граница окна
+                                                                      Color.FromArgb(16, 110, 190),     // FormBorderActiveLight    // Полоска под границей окна
+                                                                      Color.FromArgb(16, 110, 190),     // FormBorderActiveDark     // Внутренняя граница окна
                                                                       Color.FromArgb(248, 247, 247),    // FormBorderInactiveLight
                                                                       Color.FromArgb(248, 247, 247),    // FormBorderInactiveDark
 
                                                                       Color.FromArgb(101, 0, 0),        // FormBorderHeaderActive
                                                                       Color.FromArgb(134, 139, 145),    // FormBorderHeaderInactive
-                                                                      Color.FromArgb(16, 110, 190),     // FormBorderHeaderActive1 // Заголовок окна
+                                                                      Color.FromArgb(16, 110, 190),     // FormBorderHeaderActive1  // Заголовок окна
                                                                       Color.FromArgb(16, 110, 190),     // FormBorderHeaderActive2
                                                                       Color.FromArgb(248, 247, 247),    // FormBorderHeaderInctive1
                                                                       Color.FromArgb(248, 247, 247),    // FormBorderHeaderInctive2
@@ -92,9 +93,9 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                       Color.FromArgb(147, 202, 247),    // FormButtonBorderTrack
                                                                       Color.FromArgb(147, 202, 247),    // FormButtonBack1Track
                                                                       Color.FromArgb(147, 202, 247),    // FormButtonBack2Track
-                                                                      Color.FromArgb(14, 96, 163),    // FormButtonBorderPressed
-                                                                      Color.FromArgb(14, 96, 163),    // FormButtonBack1Pressed
-                                                                      Color.FromArgb(14, 96, 163),    // FormButtonBack2Pressed
+                                                                      Color.FromArgb(14, 96, 163),      // FormButtonBorderPressed
+                                                                      Color.FromArgb(14, 96, 163),      // FormButtonBack1Pressed
+                                                                      Color.FromArgb(14, 96, 163),      // FormButtonBack2Pressed
                                                                       Color.Black,                      // TextButtonFormNormal
                                                                       Color.Black,                      // TextButtonFormTracking
                                                                       Color.Black,                      // TextButtonFormPressed
@@ -105,6 +106,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                       Color.Purple,                     // LinkVisitedOverridePanel
                                                                       Color.Red,                        // LinkPressedOverridePanel
                                                                       Color.FromArgb( 59,  59,  59),    // TextLabelPanel
+#region Ribbon colors
                                                                       Color.FromArgb( 59,  59,  59),    // RibbonTabTextNormal
                                                                       Color.FromArgb( 76,  83,  92),    // RibbonTabTextChecked
                                                                       Color.FromArgb(182, 186, 191),    // RibbonTabSelected1
@@ -161,7 +163,8 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                       Color.FromArgb(254, 254, 254),    // RibbonGroupFrameInside2
                                                                       Color.Empty,                      // RibbonGroupFrameInside3
                                                                       Color.Empty,                      // RibbonGroupFrameInside4
-                                                                      Color.FromArgb( 59,  59,  59),    // RibbonGroupCollapsedText         
+                                                                      Color.FromArgb( 59,  59,  59),    // RibbonGroupCollapsedText        
+#endregion
                                                                       Color.FromArgb(179, 185, 195),    // AlternatePressedBack1
                                                                       Color.FromArgb(216, 224, 224),    // AlternatePressedBack2
                                                                       Color.FromArgb(125, 125, 125),    // AlternatePressedBorder1
@@ -255,7 +258,8 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                       // цвет границы групп, заголовка
                                                                       Color.FromArgb(161, 169, 179),    // ButtonNavigatorBorder
                                                                       Color.Black,                      // ButtonNavigatorText
-                                                                      Color.FromArgb(207, 213, 220),    // ButtonNavigatorTrack1
+                                                                      
+                                                                      Color.FromArgb(240, 240, 240),    // ButtonNavigatorTrack1
                                                                       Color.FromArgb(232, 234, 238),    // ButtonNavigatorTrack2
                                                                       Color.FromArgb(191, 196, 202),    // ButtonNavigatorPressed1
                                                                       Color.FromArgb(225, 226, 230),    // ButtonNavigatorPressed2
@@ -276,19 +280,62 @@ namespace ComponentFactory.Krypton.Toolkit
             _galleryButtonList.ImageSize = new Size(13, 7);
             _galleryButtonList.ColorDepth = ColorDepth.Depth24Bit;
             _galleryButtonList.TransparentColor = Color.Magenta;
-            _galleryButtonList.Images.AddStrip(Properties.Resources.Gallery2010);
-            _radioButtonArray = new Image[]{Properties.Resources.RB2010BlueD,
-                                            Properties.Resources.RB2010SilverN,
-                                            Properties.Resources.RB2010BlueT,
-                                            Properties.Resources.RB2010BlueP,
-                                            Properties.Resources.RB2010BlueDC,
-                                            Properties.Resources.RB2010SilverNC,
-                                            Properties.Resources.RB2010SilverTC,
-                                            Properties.Resources.RB2010SilverPC};
+            _galleryButtonList.Images.AddStrip(Properties.Resources.Gallery2010);            
+            _radioButtonArray = GetRadioButtonImages();
         }
 
         /// <summary>
-        /// Initialize a new instance of the PaletteOffice2010Silver class.
+        /// Создает набор изображений переключателя.
+        /// </summary>
+        private static Image[] GetRadioButtonImages()
+        {
+            List<Image> imageList = new List<Image>();
+           
+            imageList.Add(CreadeRadioButtonImage(Color.FromArgb(50, 50, 50)));
+            imageList.Add(CreadeRadioButtonImage(Color.FromArgb(50, 50, 50)));
+            imageList.Add(CreadeRadioButtonImage(_schemeColors[38])); // Цвет заголовка активного окна из палитры.
+            imageList.Add(CreadeRadioButtonImage(_schemeColors[38]));
+            imageList.Add(CreadeRadioButtonImage(Color.FromArgb(50, 50, 50), true));
+            imageList.Add(CreadeRadioButtonImage(Color.FromArgb(50, 50, 50), true));
+            imageList.Add(CreadeRadioButtonImage(_schemeColors[38], true));
+            imageList.Add(CreadeRadioButtonImage(_schemeColors[38], true));
+
+            return imageList.ToArray();
+        }
+
+        /// <summary>
+        /// Рисует изображение переключателя.
+        /// </summary>
+        /// <param name="radioButtonColor">Цвет переключателя.</param>
+        /// <param name="isChecked">Положение переключателя (false если не включен).</param>
+        /// <returns>Image value.</returns>
+        private static Image CreadeRadioButtonImage(Color radioButtonColor, bool isChecked = false)
+        {
+            Bitmap radioButtonImage = new Bitmap(12, 12, PixelFormat.Format32bppArgb);
+            using (Graphics graphics = Graphics.FromImage(radioButtonImage))
+            {
+                graphics.Clear(Color.Transparent);
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+
+                using (Pen radioButtonPen = new Pen(radioButtonColor))
+                {
+                    graphics.DrawEllipse(radioButtonPen, 0, 0, 11, 11);
+                }
+
+                if (isChecked)
+                {
+                    using (Brush radioButtonBrush = new SolidBrush(radioButtonColor))
+                    {
+                        graphics.FillEllipse(radioButtonBrush, 2, 2, 7, 7);
+                    }
+                }
+            }
+
+            return radioButtonImage;
+        }
+
+        /// <summary>
+        /// Initialize a new instance of the PaletteFlat class.
 		/// </summary>
         public PaletteFlat()
             : base(_schemeColors,

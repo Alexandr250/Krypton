@@ -49,7 +49,7 @@ namespace ComponentFactory.Krypton.Toolkit
         private static readonly Padding _metricPaddingPageButtons = new Padding(1, 3, 1, 3);
 
         private static readonly Image _disabledDropDown = Properties.Resources.DisabledDropDownButton;
-        private static readonly Image _buttonSpecClose = Properties.Resources.ProfessionalCloseButton;
+        private static readonly Image _buttonSpecClose = Properties.Resources.FlatButtonClose01; //Properties.Resources.ProfessionalCloseButton;
         private static readonly Image _buttonSpecContext = Properties.Resources.ProfessionalContextButton;
         private static readonly Image _buttonSpecNext = Properties.Resources.ProfessionalNextButton;
         private static readonly Image _buttonSpecPrevious = Properties.Resources.ProfessionalPreviousButton;
@@ -60,7 +60,7 @@ namespace ComponentFactory.Krypton.Toolkit
         private static readonly Image _buttonSpecDropDown = Properties.Resources.ProfessionalDropDownButton;
         private static readonly Image _buttonSpecPinVertical = Properties.Resources.ProfessionalPinVerticalButton;
         private static readonly Image _buttonSpecPinHorizontal = Properties.Resources.ProfessionalPinHorizontalButton;
-        private static readonly Image _buttonSpecPendantClose = Properties.Resources._2010ButtonMDIClose;
+        private static readonly Image _buttonSpecPendantClose = Properties.Resources.FlatButtonClose01; //Properties.Resources._2010ButtonMDIClose;
         private static readonly Image _buttonSpecPendantMin = Properties.Resources._2010ButtonMDIMin;
         private static readonly Image _buttonSpecPendantRestore = Properties.Resources._2010ButtonMDIRestore;
         private static readonly Image _buttonSpecWorkspaceMaximize = Properties.Resources.ProfessionalMaximize;
@@ -112,21 +112,21 @@ namespace ComponentFactory.Krypton.Toolkit
         private static readonly Color[] _buttonBorderColors = new Color[]{ Color.FromArgb(180, 180, 180), // Button, Disabled, Border
                                                                            Color.FromArgb(16, 110, 190),  // Button, Tracking, Border 1
                                                                            Color.FromArgb(16, 110, 190),  // Button, Tracking, Border 2
-                                                                           Color.FromArgb(194, 118, 43),  // Button, Pressed, Border 1
-                                                                           Color.FromArgb(194, 158, 71),  // Button, Pressed, Border 2
-                                                                           Color.FromArgb(194, 138, 48),  // Button, Checked, Border 1
-                                                                           Color.FromArgb(194, 164, 77)   // Button, Checked, Border 2
+                                                                           Color.FromArgb(150, 150, 150),  // Button, Pressed, Border 1
+                                                                           Color.FromArgb(150, 150, 150),  // Button, Pressed, Border 2
+                                                                           Color.FromArgb(150, 150, 150),  // Button, Checked, Border 1
+                                                                           Color.FromArgb(150, 150, 150)   // Button, Checked, Border 2
                                                                          };
         private static readonly Color[] _buttonBackColors = new Color[]{ Color.FromArgb(250, 250, 250), // Button, Disabled, Back 1
                                                                          Color.FromArgb(250, 250, 250), // Button, Disabled, Back 2
                                                                          Color.FromArgb(16, 110, 190), // Button, Tracking, Back 1
                                                                          Color.FromArgb(16, 110, 190), // Button, Tracking, Back 2
-                                                                         Color.FromArgb(255, 228, 138), // Button, Pressed, Back 1
-                                                                         Color.FromArgb(194, 118, 43),  // Button, Pressed, Back 2
-                                                                         Color.FromArgb(255, 216, 108), // Button, Checked, Back 1
-                                                                         Color.FromArgb(255, 244, 128), // Button, Checked, Back 2
-                                                                         Color.FromArgb(255, 225, 104), // Button, Checked Tracking, Back 1
-                                                                         Color.FromArgb(255, 249, 196)  // Button, Checked Tracking, Back 2
+                                                                         Color.FromArgb(150, 150, 150), // Button, Pressed, Back 1
+                                                                         Color.FromArgb(150, 150, 150),  // Button, Pressed, Back 2
+                                                                         Color.FromArgb(150, 150, 150), // Button, Checked, Back 1
+                                                                         Color.FromArgb(150, 150, 150), // Button, Checked, Back 2
+                                                                         Color.FromArgb(150, 150, 150), // Button, Checked Tracking, Back 1
+                                                                         Color.FromArgb(150, 150, 150)  // Button, Checked Tracking, Back 2
                                                                        };
         #endregion
 
@@ -1216,7 +1216,7 @@ namespace ComponentFactory.Krypton.Toolkit
                         case PaletteState.CheckedNormal:
                             return PaletteColorStyle.ExpertChecked;
                         case PaletteState.CheckedTracking:
-                            return PaletteColorStyle.ExpertCheckedTracking;
+                            return PaletteColorStyle.Solid; // Вместо PaletteColorStyle.ExpertCheckedTracking;
                         default:
                             throw new ArgumentOutOfRangeException("state");
                     }

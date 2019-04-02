@@ -773,6 +773,46 @@ namespace ComponentFactory.Krypton.Toolkit.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FlatButtonClose01 {
+            get {
+                object obj = ResourceManager.GetObject("FlatButtonClose01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlatButtonMax01 {
+            get {
+                object obj = ResourceManager.GetObject("FlatButtonMax01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlatButtonMin01 {
+            get {
+                object obj = ResourceManager.GetObject("FlatButtonMin01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlatButtonRestor01 {
+            get {
+                object obj = ResourceManager.GetObject("FlatButtonRestor01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Gallery2010 {
             get {
                 object obj = ResourceManager.GetObject("Gallery2010", resourceCulture);

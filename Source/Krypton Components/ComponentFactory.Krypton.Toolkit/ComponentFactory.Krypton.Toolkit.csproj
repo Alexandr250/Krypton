@@ -991,6 +991,14 @@
     <None Include="Resources\help2Small.png" />
     <None Include="Resources\informationSmall.png" />
     <None Include="Resources\sign_warningSmall.png" />
+    <None Include="Resources\FlatButtonClose.png" />
+    <None Include="Resources\FlatButtonMax.png" />
+    <None Include="Resources\FlatButtonMin.png" />
+    <None Include="Resources\FlatButtonRestore.png" />
+    <None Include="Resources\FlatButtonMin01.png" />
+    <None Include="Resources\FlatButtonClose01.png" />
+    <None Include="Resources\FlatButtonMax01.png" />
+    <None Include="Resources\FlatButtonRestor01.png" />
     <Content Include="Resources\SilverDropDownButton.png" />
     <None Include="Resources\WhitePendantRibbonMinimize.bmp" />
     <None Include="Resources\WhitePendantRibbonExpand.bmp" />
